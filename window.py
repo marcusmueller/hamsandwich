@@ -68,7 +68,7 @@ if __name__ == '__main__':
     import sys
     app = QtGui.QApplication([])
     my_window = VisualizationWindow()
-    n_points = (11,11) # red points, blue points
+    n_points = (150,20) # red points, blue points
 
     colors = ( (255,0,0,200), #Color is RGB, opacity in [0,255]
                (0,0,255,200) )
@@ -82,6 +82,9 @@ if __name__ == '__main__':
         my_window.add_lines(points, line_angles, colors[index])
         intersections = geometry.dual_intersections(coordinates)
         my_window.add_intersections(intersections, colors[index])
+    leftest = geometry.median_line(point_coordinates[0])
+    my_window.add_intersections([leftest], (255,255,255,255))
+    print leftest
     
     ### Now run the whole thing
     if (sys.flags.interactive != 1) or not hasattr(QtCore, 'PYQT_VERSION'):
